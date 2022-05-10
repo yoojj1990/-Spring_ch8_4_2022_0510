@@ -2,6 +2,7 @@ package com.yjj.spring_8_4;
 
 import java.util.Scanner;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
 public class MainClass {
@@ -28,16 +29,20 @@ public class MainClass {
 		scann.close();
 		
 		
-		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
+//		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
+		
+		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
 		
 		ctx.getEnvironment().setActiveProfiles(config);
-		ctx.load("applicationCTX_dev.xml", "applicationCTX_run.xml");
+//		ctx.load("applicationCTX_dev.xml", "applicationCTX_run.xml");
+		ctx.register(ApplicationConfig_dev.class, ApplicationConfig_run.class);
 		
+		ctx.refresh();
 		
-		ServerInfo info = ctx.getBean("severInfo", ServerInfo.class);
+		ServerInfo info = ctx.getBean("serverInfo", ServerInfo.class);
 		
-		System.out.println("Sever IP : " + info.getIpNum());
-		System.out.println("Sever Port : " + info.getPortNum());
+		System.out.println("Server IP : " + info.getIpNum());
+		System.out.println("Server Port : " + info.getPortNum());
 		
 		ctx.close();
 		

@@ -5,7 +5,7 @@
 	profile="dev">
 
 	
-	<bean id="severInfo" class="com.yjj.spring_8_4.ServerInfo">
+	<bean id="serverInfo" class="com.yjj.spring_8_4.ServerInfo">
 		<property name="ipNum">
 			<value>localhost</value>
 		</property>
